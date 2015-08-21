@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -18,11 +19,11 @@ test('it renders', function(assert) {
 
 test('it saves pen strokes', function(assert) {
     assert.expect(1);
-
-    this.render(hbs`{{signature-pad stream=stream}}`);
+    this.set('value', Ember.A());
+    this.render(hbs`{{signature-pad value=value}}`);
 
     this.$('.signature-pad').trigger('mousedown');
     this.$('.signature-pad').trigger('mouseup');
 
-    assert.equal(this.get('stream').length, '1');
+    assert.equal(this.get('value').length, '1');
 });

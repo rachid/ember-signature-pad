@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     weight: 1,
     height: 68,
     width: 386,
-    value: null,// collection of penstrokes to submit
+    value: Ember.A(),// collection of penstrokes to submit
 
     canvasSelector: 'canvas',
     classNames: ['signature-pad'],
