@@ -32,6 +32,18 @@ export default Ember.Component.extend({
         this.$().on('mousedown touchstart', this.penDown.bind(this));
         this.$().on('mousemove touchmove', this.penMove.bind(this));
         this.$().on('mouseup touchend', this.penUp.bind(this));
+
+        if (!Ember.isEmpty(this.get('value'))) {
+            this.get('value').forEach(function(point) {
+                if (point[0] === 1) {
+                    this.get('canvasContext').beginPath();
+                    this.get('canvasContext').moveTo(point[1], point[2]);
+                } else {
+                    this.get('canvasContext').lineTo(point[1], point[2]);
+                    this.get('canvasContext').stroke();
+                }
+            }.bind(this));
+        }
     }),
 
     savePenStroke: function(isNewStroke) {
