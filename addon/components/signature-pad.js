@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     weight: 1,
     height: 68,
     width: 386,
-    stream: null,// collection of penstrokes to submit
+    value: null,// collection of penstrokes to submit
 
     canvasSelector: 'canvas',
     classNames: ['signature-pad'],
@@ -14,8 +14,6 @@ export default Ember.Component.extend({
 
     newStroke: 1,
     continueStroke: 0,
-
-    value: null,
 
     canvasContext: Ember.computed('canvasSelector', function() {
         if (this.$()) {
@@ -28,7 +26,6 @@ export default Ember.Component.extend({
     }),
 
     onDidInsertElement: Ember.on('didInsertElement', function() {
-        this.set('stream', []);
         this.get('canvasContext').strokeStyle = this.get('color');
         this.get('canvasContext').lineWidth = this.get('weight');
         // add events
@@ -38,9 +35,8 @@ export default Ember.Component.extend({
     }),
 
     savePenStroke: function(isNewStroke) {
-        var stream = this.get('stream');
-        stream.push([isNewStroke, this.get('pos').x, this.get('pos').y]);
-        this.set('value', JSON.stringify(stream));
+        var value = this.get('value');
+        value.pushObject([isNewStroke, this.get('pos').x, this.get('pos').y]);
     },
 
     penDown: function(event) {
@@ -97,9 +93,6 @@ export default Ember.Component.extend({
     valueObserver: Ember.observer('value', function() {
         if (Ember.isEmpty(this.get('value'))) {
             this.get('canvasContext').clearRect(0, 0, 500, 500);
-            this.setProperties({
-                stream: []
-            });
         }
     }),
 

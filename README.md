@@ -28,16 +28,18 @@ This is an ember-cli addon component that allows for users to draw their own sig
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  // array of points that make up the signature
-  signature: [],
+    signature: Ember.A(),
+    stringifiedSignature: Ember.computed('signature.[]', function() {
+        return JSON.stringify(this.get('signature'));
+    }),
 
-  actions: {
-      // clears the signature pad
-      reset: function() {
-          this.set('signature', []);
-      }
-  }
+    actions: {
+        reset: function() {
+            this.set('signature', Ember.A());
+        }
+    }
 });
+
 ```
 
 ```handlebars
@@ -47,6 +49,7 @@ export default Ember.Controller.extend({
     height=68
 }}
 <button {{action "reset"}}>Reset</button>
+<div><code>{{stringifiedSignature}}</code></div>
 ```
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).

@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    signature: null,
+    signature: Ember.A(),
+    stringifiedSignature: Ember.computed('signature.[]', function() {
+        return JSON.stringify(this.get('signature'));
+    }),
 
     actions: {
         reset: function() {
-            this.set('signature', null);
+            this.set('signature', Ember.A());
         }
     }
 });
