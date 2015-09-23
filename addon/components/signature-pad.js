@@ -5,7 +5,10 @@ export default Ember.Component.extend({
     weight: 1,
     height: 68,
     width: 386,
-    value: Ember.A(),// collection of penstrokes to submit
+    // collection of penstrokes to submit
+    value: Ember.computed(function () {
+        return Ember.A();
+    }),
 
     canvasSelector: 'canvas',
     classNames: ['signature-pad'],
@@ -33,7 +36,7 @@ export default Ember.Component.extend({
         this.$().on('mousemove touchmove', this.penMove.bind(this));
         this.$().on('mouseup touchend', this.penUp.bind(this));
 
-        if (!Ember.isEmpty(this.get('value'))) {
+        if (Ember.isPresent(this.get('value'))) {
             this.get('value').forEach(function(point) {
                 if (point[0] === 1) {
                     this.get('canvasContext').beginPath();
@@ -103,7 +106,7 @@ export default Ember.Component.extend({
     },
 
     valueObserver: Ember.observer('value', function() {
-        if (Ember.isEmpty(this.get('value'))) {
+        if (Ember.isEmpty(this.get('value')) && this.$()) {
             this.get('canvasContext').clearRect(0, 0, 500, 500);
         }
     }),
