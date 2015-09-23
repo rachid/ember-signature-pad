@@ -12,6 +12,7 @@ This is an ember-cli addon component that allows for users to draw their own sig
 
 * `ember server`
 * Visit your app at http://localhost:4200.
+* Demo the app at [http://ember-signature-pad.divshot.io](http://ember-signature-pad.divshot.io)
 
 ## Running Tests
 
@@ -28,11 +29,12 @@ This is an ember-cli addon component that allows for users to draw their own sig
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    signature: Ember.A(),
+    signature: Ember.computed(function () {
+        return Ember.A();
+    }),
     stringifiedSignature: Ember.computed('signature.[]', function() {
         return JSON.stringify(this.get('signature'));
     }),
-
     actions: {
         reset: function() {
             this.set('signature', Ember.A());
