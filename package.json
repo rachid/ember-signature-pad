@@ -22,7 +22,6 @@
     "ember-cli": "1.13.7",
     "ember-cli-app-version": "0.4.0",
     "ember-cli-dependency-checker": "^1.0.0",
-    "ember-cli-divshot": "^0.1.7",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-htmlbars-inline-precompile": "^0.1.1",
     "ember-cli-ic-ajax": "0.2.1",
@@ -45,6 +44,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://ember-signature-pad.divshot.io/"
+    "demoURL": "https://ember-signature-pad.firebaseapp.com/"
   }
 }

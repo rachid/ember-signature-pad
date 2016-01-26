@@ -1,0 +1,9 @@
+{
+  "firebase": "ember-signature-pad",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

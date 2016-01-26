@@ -12,7 +12,7 @@ This is an ember-cli addon component that allows for users to draw their own sig
 
 * `ember server`
 * Visit your app at http://localhost:4200.
-* Demo the app at [http://ember-signature-pad.divshot.io](http://ember-signature-pad.divshot.io)
+* Demo the app at [https://ember-signature-pad.firebaseapp.com/](https://ember-signature-pad.firebaseapp.com/)
 
 ## Running Tests
 
