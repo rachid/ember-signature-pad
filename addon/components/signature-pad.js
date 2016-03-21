@@ -65,6 +65,9 @@ export default Ember.Component.extend({
 
     penMove: function(event) {
         var newPos = this.newEvent(event).penPosition();
+
+        event.preventDefault();
+
         if (this.get('penstate')) {
             this.set('pos', newPos);
             this.get('canvasContext').lineTo(newPos.x, newPos.y);
